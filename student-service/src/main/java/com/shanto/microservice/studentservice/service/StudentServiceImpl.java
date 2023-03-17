@@ -51,13 +51,13 @@ public class StudentServiceImpl implements StudentService {
 
         Student student = studentRepository.findById(id).get();
 
-        DepartmentDto departmentDto = restTemplate.getForEntity("http://localhost:8080/api/department/"+student.getDepartmentCode(), DepartmentDto.class).getBody();
+       // DepartmentDto departmentDto = restTemplate.getForEntity("http://localhost:8080/api/department/"+student.getDepartmentCode(), DepartmentDto.class).getBody();
 
-        DepartmentDto departmentDto1 = webClient.get()
-                .uri("http://localhost:8080/api/department/"+student.getDepartmentCode())
-                .retrieve()
-                .bodyToMono(DepartmentDto.class)
-                .block();
+//        DepartmentDto departmentDto1 = webClient.get()
+//                .uri("http://localhost:8080/api/department/"+student.getDepartmentCode())
+//                .retrieve()
+//                .bodyToMono(DepartmentDto.class)
+//                .block();
 
         DepartmentDto departmentDto2 = feignClient.getByDepartmentCode(student.getDepartmentCode());
 
